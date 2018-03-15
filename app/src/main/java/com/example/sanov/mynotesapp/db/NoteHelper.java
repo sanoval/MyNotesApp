@@ -6,8 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.sanov.mynotesapp.FormAddUpdateActivity;
-import com.example.sanov.mynotesapp.Note;
+import com.example.sanov.mynotesapp.model.Note;
 
 import java.util.ArrayList;
 

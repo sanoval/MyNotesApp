@@ -1,4 +1,4 @@
-package com.example.sanov.mynotesapp;
+package com.example.sanov.mynotesapp.model;
 
 import android.database.Cursor;
 import android.os.Parcel;

@@ -12,6 +12,7 @@ import com.example.sanov.mynotesapp.db.DatabaseContract;
 import com.example.sanov.mynotesapp.db.NoteHelper;
 
 import static com.example.sanov.mynotesapp.db.DatabaseContract.AUTHORITY;
+import static com.example.sanov.mynotesapp.db.DatabaseContract.CONTENT_URI;
 
 /**
  * Created by sanov on 3/15/2018.
@@ -36,10 +37,11 @@ public class NoteProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        return false;
+        noteHelper = new NoteHelper(getContext());
+        noteHelper.open();
+        return true;
     }
 
-    @Nullable
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] strings, @Nullable String s, @Nullable String[] strings1, @Nullable String s1) {
         Cursor cursor;
@@ -62,25 +64,64 @@ public class NoteProvider extends ContentProvider {
         return cursor;
     }
 
-    @Nullable
     @Override
     public String getType(@NonNull Uri uri) {
         return null;
     }
 
-    @Nullable
     @Override
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues contentValues) {
-        return null;
+        long added;
+        switch (sUriMatcher.match(uri)) {
+            case NOTE:
+                added = noteHelper.insertProvider(contentValues);
+                break;
+            default:
+                added = 0;
+                break;
+        }
+
+        if (added > 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+
+        return Uri.parse(CONTENT_URI + "/" + added);
     }
 
     @Override
     public int delete(@NonNull Uri uri, @Nullable String s, @Nullable String[] strings) {
-        return 0;
+        int deleted;
+        switch (sUriMatcher.match(uri)) {
+            case NOTE_ID:
+                deleted = noteHelper.deleteProvider(uri.getLastPathSegment());
+                break;
+            default:
+                deleted = 0;
+                break;
+        }
+
+        if (deleted > 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+
+        return deleted;
     }
 
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues contentValues, @Nullable String s, @Nullable String[] strings) {
-        return 0;
+        int updated;
+        switch (sUriMatcher.match(uri)) {
+            case NOTE_ID:
+                updated = noteHelper.updateProvider(uri.getLastPathSegment(), contentValues);
+                break;
+            default:
+                updated = 0;
+                break;
+        }
+
+        if (updated > 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+        return updated;
     }
 }

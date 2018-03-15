@@ -12,11 +12,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.sanov.mynotesapp.CustomOnItemClickListener;
-import com.example.sanov.mynotesapp.FormAddUpdateActivity;
-import com.example.sanov.mynotesapp.Note;
+import com.example.sanov.mynotesapp.ui.activity.FormAddUpdateActivity;
+import com.example.sanov.mynotesapp.model.Note;
 import com.example.sanov.mynotesapp.R;
-
-import java.util.LinkedList;
 
 import static com.example.sanov.mynotesapp.db.DatabaseContract.CONTENT_URI;
 

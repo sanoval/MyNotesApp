@@ -1,4 +1,4 @@
-package com.example.sanov.mynotesapp;
+package com.example.sanov.mynotesapp.ui.activity;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.example.sanov.mynotesapp.R;
 import com.example.sanov.mynotesapp.adapter.NoteAdapter;
 
 import static com.example.sanov.mynotesapp.db.DatabaseContract.CONTENT_URI;
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 new LoadNoteAsync().execute();
                 showSnackbarMessage(getResources().getString(R.string.item_updated));
             } else if (resultCode == FormAddUpdateActivity.RESULT_DELETE) {
-                int position = data.getIntExtra(FormAddUpdateActivity.EXTRA_POSITION, 0);
+                new LoadNoteAsync().execute();
                 showSnackbarMessage(getResources().getString(R.string.item_deleted));
             }
         }
