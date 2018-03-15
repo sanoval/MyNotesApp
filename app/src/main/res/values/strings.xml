@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">MyNotesApp</string>
+    <string name="date">Tanggal</string>
+    <string name="title">Judul</string>
+    <string name="description">Deskripsi</string>
+    <string name="judul">Judul</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="submit">Submit</string>
+    <string name="hapus">Hapus</string>
+    <string name="not_null">Field can not be blank</string>
+    <string name="batal">Batal</string>
+    <string name="batal_pesan">Apakah anda ingin membatalkan perubahan pada form?</string>
+    <string name="hapus_pesan">Apakah anda yakin ingin menghapus item ini?</string>
+    <string name="ya">Ya</string>
+    <string name="tidak">TIdak</string>
+    <string name="no_data">Tidak ada data saat ini</string>
+    <string name="item_added">Satu item berhasil ditambahkan</string>
+    <string name="item_updated">Item berhasil diubah</string>
+    <string name="item_deleted">Item berhasil dihapus</string>
+</resources>
