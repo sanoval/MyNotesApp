@@ -1,7 +1,14 @@
 package com.example.sanov.mynotesapp;
 
+import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import com.example.sanov.mynotesapp.db.DatabaseContract;
+
+import static android.provider.BaseColumns._ID;
+import static com.example.sanov.mynotesapp.db.DatabaseContract.getColumnInt;
+import static com.example.sanov.mynotesapp.db.DatabaseContract.getColumnString;
 
 /**
  * Created by sanov on 3/7/2018.
@@ -14,6 +21,13 @@ public class Note implements Parcelable {
 
     public Note() {
 
+    }
+
+    public Note(Cursor cursor) {
+        this.id = getColumnInt(cursor, _ID);
+        this.title = getColumnString(cursor, DatabaseContract.NoteColumns.TITLE);
+        this.description = getColumnString(cursor, DatabaseContract.NoteColumns.DESCRIPTION);
+        this.date = getColumnString(cursor, DatabaseContract.NoteColumns.DATE);
     }
 
     public Note(Parcel in) {
